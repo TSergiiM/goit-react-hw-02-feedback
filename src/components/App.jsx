@@ -10,14 +10,38 @@ export class App extends Component {
     bad: 0,
   };
 
+  handleGood = () => {
+    this.setState(prevState => ({
+      good: prevState.good + 1,
+    }));
+  };
+  handleNeutral = () => {
+    this.setState(prevState => ({
+      neutral: prevState.neutral + 1,
+    }));
+  };
+  handleBad = () => {
+    this.setState(prevState => ({
+      bad: prevState.bad + 1,
+    }));
+  };
+
   render() {
-    const { good, neutral, bad } = this.state;
     return (
       <div>
         <SectionTitle title="Please leave feedback"></SectionTitle>
-        <FeedbackOptions></FeedbackOptions>
+        <FeedbackOptions
+          onGood={this.handleGood}
+          onNeutral={this.handleNeutral}
+          onBad={this.handleBad}
+        ></FeedbackOptions>
         <SectionTitle title="Statistics"></SectionTitle>
-        <Statistics></Statistics>
+        {/* <Statistics></Statistics> */}
+        <div>
+          <p>Good:{this.state.good}</p>
+          <p>Neutral:{this.state.neutral}</p>
+          <p>Bad:{this.state.bad}</p>
+        </div>
       </div>
     );
   }
