@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { SectionTitle } from './SectionTitle/SectionTitle';
-// import { Statistics } from './Statistics/Statistics';
+import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 
 export class App extends Component {
@@ -25,8 +25,8 @@ export class App extends Component {
       bad: prevState.bad + 1,
     }));
   };
-
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <div>
         <SectionTitle title="Please leave feedback"></SectionTitle>
@@ -36,12 +36,7 @@ export class App extends Component {
           onBad={this.handleBad}
         ></FeedbackOptions>
         <SectionTitle title="Statistics"></SectionTitle>
-        {/* <Statistics></Statistics> */}
-        <div>
-          <p>Good:{this.state.good}</p>
-          <p>Neutral:{this.state.neutral}</p>
-          <p>Bad:{this.state.bad}</p>
-        </div>
+        <Statistics good={good} neutral={neutral} bad={bad}></Statistics>
       </div>
     );
   }
