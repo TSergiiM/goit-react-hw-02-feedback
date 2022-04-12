@@ -26,18 +26,18 @@ export class App extends Component {
     }));
   };
   countTotalFeedback = () => {
-    console.log(Object.values(this.state));
     return Object.values(this.state).reduce((total, value) => {
       return total + value;
     }, 0);
   };
-  countPositiveFeedbackPercentage = () => {};
+  countPositiveFeedbackPercentage = () => {
+    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+  };
 
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
-    const countPositiveFeedbackPercentage =
-      this.countPositiveFeedbackPercentage;
+
     return (
       <div>
         <SectionTitle title="Please leave feedback"></SectionTitle>
@@ -52,7 +52,7 @@ export class App extends Component {
           neutral={neutral}
           bad={bad}
           total={total}
-          positivePercentage={countPositiveFeedbackPercentage}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
         ></Statistics>
       </div>
     );
