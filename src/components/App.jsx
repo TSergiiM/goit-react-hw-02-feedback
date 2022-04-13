@@ -15,21 +15,20 @@ export class App extends Component {
     this.setState(prevState => ({
       [event.target.name]: prevState[event.target.name] + 1,
     }));
-    console.log([event.target.name]);
   };
 
-  countTotalFeedback = () => {
+  getCountTotalFeedback = () => {
     return Object.values(this.state).reduce((total, value) => {
       return total + value;
     }, 0);
   };
   countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+    return Math.round((this.state.good / this.getCountTotalFeedback()) * 100);
   };
 
   render() {
     const { good, neutral, bad } = this.state;
-    const total = this.countTotalFeedback();
+    const total = this.getCountTotalFeedback();
 
     return (
       <div>
